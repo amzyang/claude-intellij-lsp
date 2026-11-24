@@ -1,0 +1,16 @@
+{
+  "name": "intellij-lsp-marketplace",
+  "owner": {
+    "name": "amzyang"
+  },
+  "plugins": [
+    {
+      "name": "intellij-lsp",
+      "source": "./",
+      "description": "A Java and Kotlin LSP adapter for a local IntelliJ server."
+    }
+  ],
+  "metadata": {
+    "description": "Unofficial IntelliJ language server integration for Claude Code."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "intellij-lsp",
+  "version": "0.1.0",
+  "description": "Java and Kotlin navigation through a locally installed JetBrains IntelliJ language server.",
+  "author": { "name": "amzyang" },
+  "repository": "https://github.com/amzyang/claude-intellij-lsp",
+  "userConfig": {
+    "server_bin": {
+      "type": "directory",
+      "title": "IntelliJ server bin directory",
+      "description": "Absolute path to the directory containing lsp-router and intellij-server.",
+      "required": true
+    },
+    "accepted_eula_hash": {
+      "type": "string",
+      "title": "Accepted bundle EULA hash",
+      "description": "First 16 hex characters of SHA-256 of EULA.txt, only after reviewing and accepting that agreement.",
+      "required": true
+    }
+  },
+  "lspServers": {
+    "intellij": {
+      "command": "${user_config.server_bin}/lsp-router",
+      "args": [
+        "--server-launcher", "${user_config.server_bin}/intellij-server",
+        "--", "--data-sharing=none", "--eula=${user_config.accepted_eula_hash}"
+      ],
+      "extensionToLanguage": { ".java": "java", ".kt": "kotlin", ".kts": "kotlin" },
+      "startupTimeout": 120000
+    }
+  }
+}
