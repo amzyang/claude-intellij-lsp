@@ -29,6 +29,19 @@ claude plugin install intellij-lsp --marketplace amzyang/claude-intellij-lsp --s
 
 This adapter uses stdio, leaves build-tool detection to the server, and passes `--data-sharing=none`. If the EULA changes after a bundle upgrade, review the new terms before updating the hash.
 
+## Upgrade the language server
+
+From a project with the plugin configured, check the build published for this machine or upgrade to it:
+
+```text
+/intellij-lsp:upgrade --check
+/intellij-lsp:upgrade
+```
+
+Requires Python 3, curl, and the platform extractor (`ditto` on macOS, `tar` on Linux). The updater verifies the download against the SHA-256 in JetBrains' platform manifest, stages the new build under `~/.local/share/intellij-server`, and switches the plugin's saved `server_bin`. These options are per user and affect all installations of this plugin. Older builds stay on disk. An equal build is a no-op; a newer local build is never downgraded.
+
+If the EULA changes, the new build stays staged and the old configuration remains active. Read the indicated `EULA.txt`; only if you accept it, run `/intellij-lsp:upgrade --accept-eula HASH` with the hash shown. After switching, run `/reload-plugins` and verify a jump. To roll back, select the old `bin` path and its matching accepted EULA hash in the plugin options, then reload. Updating the Claude Code plugin via its marketplace does not update the JetBrains server.
+
 ## Verify navigation
 
 Use a fresh Claude Code session in a small Java or Kotlin project, with only this language provider enabled for the file type. Ask the LSP tool to go from a method call to its definition in another file. A returned location in the expected source file verifies navigation; seeing the plugin in the installed list only verifies installation. Keep other projects' Java providers unchanged while testing.

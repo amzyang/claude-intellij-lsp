@@ -1,6 +1,6 @@
 {
   "name": "intellij-lsp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Java and Kotlin navigation through a locally installed JetBrains IntelliJ language server.",
   "author": { "name": "amzyang" },
   "repository": "https://github.com/amzyang/claude-intellij-lsp",
